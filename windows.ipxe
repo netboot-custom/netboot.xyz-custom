@@ -5,7 +5,6 @@
 
 set winpe_arch x64
 set win_image Win10_20H2_English_x64
-#set win_base_url $$win_base_url$$
 goto ${menu} ||
 
 :windows
@@ -16,7 +15,6 @@ item --gap Installers
 item win_install ${space} Load ${os} Installer...
 item --gap Options:
 item image_set ${space} Image [ ${win_image} ]
-#item pe_arch_set ${space} Architecture [ ${winpe_arch} ]
 item url_set ${space} Base URL [ ${win_base_url} ]
 choose win_version || goto windows_exit
 goto ${win_version}
