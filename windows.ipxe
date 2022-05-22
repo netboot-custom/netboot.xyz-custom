@@ -13,7 +13,8 @@ set os Microsoft Windows
 clear win_version
 menu ${os} 
 item --gap Installers
-item win_install ${space} Load ${os} Installer...
+item win_install ${space} Boot Windows 10 x64 Installer
+item win_cmd ${space} Boot Windows 10 x64 Command Line
 item --gap Options:
 #item image_set ${space} Image [ ${win_image} ]
 item url_set ${space} Base URL [ ${win_base_url} ]
@@ -50,9 +51,24 @@ prompt Press any key to return to Windows Menu...
 goto windows
 
 :win_install
-isset ${win_base_url} && goto boot || echo URL not set... && goto url_set
+isset ${win_base_url} && goto boot_install || echo URL not set... && goto url_set
 
-:boot
+:win_cmd
+isset ${win_base_url} && goto boot_cmd || echo URL not set... && goto url_set
+
+:boot_cmd
+imgfree
+kernel http://${boot_domain}/wimboot
+initrd -n bootmgr     ${win_base_url}/x64/bootmgr       bootmgr ||
+initrd -n bootmgr.efi ${win_base_url}/x64/bootmgr.efi   bootmgr.efi ||      
+initrd -n bcd         ${win_base_url}/x64/boot/bcd      bcd ||
+initrd -n bcd         ${win_base_url}/x64/Boot/BCD      bcd ||
+initrd -n boot.sdi    ${win_base_url}/x64/boot/boot.sdi boot.sdi ||
+initrd -n boot.sdi    ${win_base_url}/x64/Boot/boot.sdi boot.sdi ||
+initrd -n boot.wim    ${win_base_url}/x64/sources/boot.wim boot.wim
+boot
+
+:boot_install
 imgfree
 kernel http://${boot_domain}/wimboot
 initrd ${win_base_url}/configs/install.bat install.bat
