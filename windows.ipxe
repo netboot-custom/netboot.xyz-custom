@@ -2,6 +2,7 @@
 
 # Microsoft Windows
 # https://www.microsoft.com
+# adpated from https://github.com/netbootxyz/netboot.xyz/discussions/757
 
 set winpe_arch x64
 set win_image Win10_20H2_English_x64
@@ -14,7 +15,7 @@ menu ${os}
 item --gap Installers
 item win_install ${space} Load ${os} Installer...
 item --gap Options:
-item image_set ${space} Image [ ${win_image} ]
+#item image_set ${space} Image [ ${win_image} ]
 item url_set ${space} Base URL [ ${win_base_url} ]
 choose win_version || goto windows_exit
 goto ${win_version}
@@ -41,7 +42,7 @@ echo ${win_base_url}/x64/bootmgr.efi
 echo ${win_base_url}/x64/boot/bcd
 echo ${win_base_url}/x64/boot/boot.sdi
 echo ${win_base_url}/x64/sources/boot.wim
-echo ${win_base_url}/configs/${win_image}/install.bat
+echo ${win_base_url}/configs/install.bat
 echo ${win_base_url}/configs/configure.bat
 echo ${win_base_url}/configs/winpeshl.ini
 echo
