@@ -59,13 +59,12 @@ isset ${win_base_url} && goto boot_cmd || echo URL not set... && goto url_set
 :boot_cmd
 imgfree
 kernel http://${boot_domain}/wimboot
-initrd -n bootmgr     ${win_base_url}/x64/bootmgr       bootmgr ||
-initrd -n bootmgr.efi ${win_base_url}/x64/bootmgr.efi   bootmgr.efi ||      
-initrd -n bcd         ${win_base_url}/x64/boot/bcd      bcd ||
-initrd -n bcd         ${win_base_url}/x64/Boot/BCD      bcd ||
-initrd -n boot.sdi    ${win_base_url}/x64/boot/boot.sdi boot.sdi ||
-initrd -n boot.sdi    ${win_base_url}/x64/Boot/boot.sdi boot.sdi ||
-initrd -n boot.wim    ${win_base_url}/x64/sources/boot.wim boot.wim
+initrd -n bootmgr     ${win_base_url}/windowspe/bootmgr       bootmgr ||
+initrd -n bootmgr.efi ${win_base_url}/windowspe/bootmgr.efi   bootmgr.efi ||      
+initrd -n bcd         ${win_base_url}/windowspe/bcd      bcd ||
+initrd -n bcd         ${win_base_url}/windowspe/BCD      bcd ||
+initrd -n boot.sdi    ${win_base_url}/windowspe/boot.sdi boot.sdi ||
+initrd -n boot.wim    ${win_base_url}/windowspe/boot.wim boot.wim
 boot
 
 :boot_install
@@ -74,13 +73,12 @@ kernel http://${boot_domain}/wimboot
 initrd ${win_base_url}/config/install.bat install.bat
 initrd ${win_base_url}/config/configure.bat configure.bat
 initrd ${win_base_url}/config/winpeshl.ini winpeshl.ini
-initrd -n bootmgr     ${win_base_url}/x64/bootmgr       bootmgr ||
-initrd -n bootmgr.efi ${win_base_url}/x64/bootmgr.efi   bootmgr.efi ||      
-initrd -n bcd         ${win_base_url}/x64/boot/bcd      bcd ||
-initrd -n bcd         ${win_base_url}/x64/Boot/BCD      bcd ||
-initrd -n boot.sdi    ${win_base_url}/x64/boot/boot.sdi boot.sdi ||
-initrd -n boot.sdi    ${win_base_url}/x64/Boot/boot.sdi boot.sdi ||
-initrd -n boot.wim    ${win_base_url}/x64/sources/boot.wim boot.wim
+initrd -n bootmgr     ${win_base_url}/windowspe/bootmgr       bootmgr ||
+initrd -n bootmgr.efi ${win_base_url}/windowspe/bootmgr.efi   bootmgr.efi ||      
+initrd -n bcd         ${win_base_url}/windowspe/bcd      bcd ||
+initrd -n bcd         ${win_base_url}/windowspe/BCD      bcd ||
+initrd -n boot.sdi    ${win_base_url}/windowspe/boot.sdi boot.sdi ||
+initrd -n boot.wim    ${win_base_url}/windowspe/boot.wim boot.wim
 boot
 
 :windows_exit
