@@ -43,9 +43,9 @@ echo ${win_base_url}/x64/bootmgr.efi
 echo ${win_base_url}/x64/boot/bcd
 echo ${win_base_url}/x64/boot/boot.sdi
 echo ${win_base_url}/x64/sources/boot.wim
-echo ${win_base_url}/configs/install.bat
-echo ${win_base_url}/configs/configure.bat
-echo ${win_base_url}/configs/winpeshl.ini
+echo ${win_base_url}/config/install.bat
+echo ${win_base_url}/config/configure.bat
+echo ${win_base_url}/config/winpeshl.ini
 echo
 prompt Press any key to return to Windows Menu...
 goto windows
@@ -71,9 +71,9 @@ boot
 :boot_install
 imgfree
 kernel http://${boot_domain}/wimboot
-initrd ${win_base_url}/configs/install.bat install.bat
-initrd ${win_base_url}/configs/configure.bat configure.bat
-initrd ${win_base_url}/configs/winpeshl.ini winpeshl.ini
+initrd ${win_base_url}/config/install.bat install.bat
+initrd ${win_base_url}/config/configure.bat configure.bat
+initrd ${win_base_url}/config/winpeshl.ini winpeshl.ini
 initrd -n bootmgr     ${win_base_url}/x64/bootmgr       bootmgr ||
 initrd -n bootmgr.efi ${win_base_url}/x64/bootmgr.efi   bootmgr.efi ||      
 initrd -n bcd         ${win_base_url}/x64/boot/bcd      bcd ||
